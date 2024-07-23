@@ -17,27 +17,13 @@ Deno.serve(async (request) => {
         if (previousWord.slice(-1) === nextWord.slice(0, 1)) {
             //末尾が「ん」になっている場合
             //ifの中に入力された単語の末尾が「ん」になっていることを確認する条件式を追加
-            if (charLast == 'ん'){
-                return new Response(
-                    JSON.stringify({
-                        //エラーを返す処理を追加
-                        "errorMessage1":"んがついていますあなたの負けです",
-                        //errorCodeを固有のものにして、末尾が「ん」の時に発生したエラーだとWeb側に通知できるようにする
-                        "errorCode": "10010"
-                    }),
-                    {
-                        status: 300,
-                        headers: { "Content-Type":"application/json; charset=utf-8"
-},
-                    }
-                );
-            }
+            
             previousWord = nextWord;
         }
     else {
         return new Response(
             JSON.stringify({
-                "errorMessage2":"前の単語に続いていません",
+                "errorMessage":"前の単語に続いていません",
                 "errorCode": "10001"
             }),
             {
